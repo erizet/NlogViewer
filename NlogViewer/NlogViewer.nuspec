@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>Erik Zetterqvist</authors>
+    <owners>$author$</owners>
+    <projectUrl>https://github.com/erizet/NlogViewer</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>$description$</description>
+    <releaseNotes>First public release.</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>NLog WPF Control</tags>
+    <dependencies>
+      <dependency id="NLog" version="2.0.0.2000" />
+    </dependencies>
+  </metadata>
+  <files>
+    <file src="NuGet\tools\*.*" target="tools" />
+    <file src="NuGet\content\*.*" target="content" />
+  </files>
+</package>
