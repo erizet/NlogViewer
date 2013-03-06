@@ -1,4 +1,5 @@
 [1]: http://dotnetsolutionsbytomi.blogspot.se/2011/06/creating-awesome-logging-control-with.html
+[nuget]: https://nuget.org/packages/NlogViewer/
 
 NlogViewer
 ==========
@@ -28,3 +29,7 @@ To setup NlogViewer as a target, add the following to your Nlog.config.
     <logger name="*" minlevel="Trace" writeTo="ctrl" />
   </rules>
 ```
+
+##Nuget##
+
+A NuGet-package is available [here][nuget]. It will try to install the control and a sample Nlog.config.
