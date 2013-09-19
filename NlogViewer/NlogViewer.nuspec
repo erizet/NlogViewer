@@ -13,7 +13,7 @@
     <copyright>Copyright 2013</copyright>
     <tags>NLog WPF Control</tags>
     <dependencies>
-      <dependency id="NLog" version="2.0.0.2000" />
+      <dependency id="NLog" />
     </dependencies>
   </metadata>
   <files>
