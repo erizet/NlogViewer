@@ -77,7 +77,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="NlogViewer.nuspec" />
+    <None Include="NlogViewer.nuspec">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="NuGet\content\NLog.config" />
     <None Include="NuGet\tools\Install.ps1" />
     <None Include="packages.config" />
