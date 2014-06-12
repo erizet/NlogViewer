@@ -9,7 +9,7 @@
     <projectUrl>https://github.com/erizet/NlogViewer</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>First public release.</releaseNotes>
+    <releaseNotes>Downgraded minimum framework version to .NET 4.0.</releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>NLog WPF Control</tags>
     <dependencies>
