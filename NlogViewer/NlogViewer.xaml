@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:nlogViewer="clr-namespace:NlogViewer"
              mc:Ignorable="d"
              d:DesignHeight="230" d:DesignWidth="457"
              DataContext="{Binding RelativeSource={RelativeSource Self}}">
@@ -30,10 +31,11 @@
             <ListView.View>
                 <GridView>
                     <GridView.Columns>
-                        <GridViewColumn DisplayMemberBinding="{Binding LoggerName}" Header="Logger"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Level}" Header="Level"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding FormattedMessage}" Width="500" Header="Message"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Exception}" Header="Exception"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Time}" Header="Time" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nlogViewer:NlogViewer}}, Path=TimeWidth}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding LoggerName}" Header="Logger" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nlogViewer:NlogViewer}}, Path=LoggerNameWidth}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Level}" Header="Level" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nlogViewer:NlogViewer}}, Path=LevelWidth}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding FormattedMessage}"  Header="Message" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nlogViewer:NlogViewer}}, Path=MessageWidth}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding Exception}" Header="Exception" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nlogViewer:NlogViewer}}, Path=ExceptionWidth}"/>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>

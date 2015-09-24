@@ -31,7 +31,7 @@
 
 
         <GroupBox Grid.Row="2" Header="NlogViewer">
-            <nlog:NlogViewer x:Name="logCtrl" /> 
+            <nlog:NlogViewer x:Name="logCtrl" TimeWidth="AUTO" LoggerNameWidth="0" /> 
         </GroupBox>
 
     </Grid>

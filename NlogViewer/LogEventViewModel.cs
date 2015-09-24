@@ -1,18 +1,15 @@
-﻿using NLog;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
+using System.Globalization;
 using System.Windows.Media;
+using NLog;
 
 namespace NlogViewer
 {
     public class LogEventViewModel
     {
-        private NLog.LogEventInfo logEventInfo;
+        private LogEventInfo logEventInfo;
 
-        public LogEventViewModel(NLog.LogEventInfo logEventInfo)
+        public LogEventViewModel(LogEventInfo logEventInfo)
         {
             // TODO: Complete member initialization
             this.logEventInfo = logEventInfo;
@@ -22,12 +19,24 @@ namespace NlogViewer
             FormattedMessage = logEventInfo.FormattedMessage;
             Exception = logEventInfo.Exception;
             LoggerName = logEventInfo.LoggerName;
+            Time = logEventInfo.TimeStamp.ToString(CultureInfo.InvariantCulture);
 
             SetupColors(logEventInfo);
-
         }
 
-        private void SetupColors(NLog.LogEventInfo logEventInfo)
+
+        public string Time { get; private set; }
+        public string LoggerName { get; private set; }
+        public string Level { get; private set; }
+        public string FormattedMessage { get; private set; }
+        public Exception Exception { get; private set; }
+        public string ToolTip { get; private set; }
+        public SolidColorBrush Background { get; private set; }
+        public SolidColorBrush Foreground { get; private set; }
+        public SolidColorBrush BackgroundMouseOver { get; private set; }
+        public SolidColorBrush ForegroundMouseOver { get; private set; }
+
+        private void SetupColors(LogEventInfo logEventInfo)
         {
             if (logEventInfo.Level == LogLevel.Warn)
             {
@@ -47,20 +56,5 @@ namespace NlogViewer
             Foreground = Brushes.Black;
             ForegroundMouseOver = Brushes.Black;
         }
-
-
-        public string LoggerName { get; private set; }
-        public string Level { get; private set; }
-        public string FormattedMessage { get; private set; }
-        public Exception Exception { get; private set; }
-        public string ToolTip { get; private set; }
-        public SolidColorBrush Background { get; private set; }
-        public SolidColorBrush Foreground { get; private set; }
-        public SolidColorBrush BackgroundMouseOver { get; private set; }
-        public SolidColorBrush ForegroundMouseOver { get; private set; }
-
-
-
-
     }
 }

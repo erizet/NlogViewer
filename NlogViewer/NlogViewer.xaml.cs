@@ -26,6 +26,24 @@ namespace NlogViewer
         public ObservableCollection<LogEventViewModel> LogEntries { get; private set; }
         public bool IsTargetConfigured { get; private set; }
 
+        [Description("Width of time column in pixels"), Category("Data")]
+        [TypeConverterAttribute(typeof(LengthConverter))]
+        public double TimeWidth { get; set; }
+
+        [Description("Width of Logger column in pixels, or auto if not specified"), Category("Data")]
+        [TypeConverterAttribute(typeof(LengthConverter))]
+        public double LoggerNameWidth { set; get; }
+
+        [Description("Width of Level column in pixels"), Category("Data")]
+        [TypeConverterAttribute(typeof(LengthConverter))]
+        public double LevelWidth { get; set; }
+        [Description("Width of Message column in pixels"), Category("Data")]
+        [TypeConverterAttribute(typeof(LengthConverter))]
+        public double MessageWidth { get; set; }
+        [Description("Width of Exception column in pixels"), Category("Data")]
+        [TypeConverterAttribute(typeof(LengthConverter))]
+        public double ExceptionWidth { get; set; }
+
 
         public NlogViewer()
         {
