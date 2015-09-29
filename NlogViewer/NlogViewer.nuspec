@@ -9,7 +9,7 @@
     <projectUrl>https://github.com/erizet/NlogViewer</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Updated to Nlog 3.0 and migrated to automatic package restore.</releaseNotes>
+    <releaseNotes>Added time column and width property for all columns.</releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>NLog WPF Control</tags>
     <dependencies>
