@@ -43,7 +43,7 @@ namespace NlogViewer
                 Background = Brushes.Yellow;
                 BackgroundMouseOver = Brushes.GreenYellow;
             }
-            else if (logEventInfo.Level == LogLevel.Error)
+            else if (logEventInfo.Level == LogLevel.Error || logEventInfo.Level == LogLevel.Fatal)
             {
                 Background = Brushes.Tomato;
                 BackgroundMouseOver = Brushes.IndianRed;
