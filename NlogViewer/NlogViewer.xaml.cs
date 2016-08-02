@@ -72,6 +72,8 @@ namespace NlogViewer
                     LogEntries.RemoveAt(0);
                 
                 LogEntries.Add(vm);
+                logView.SelectedIndex = logView.Items.Count - 1;
+                logView.ScrollIntoView(logView.SelectedItem);
             }));
         }
     }
