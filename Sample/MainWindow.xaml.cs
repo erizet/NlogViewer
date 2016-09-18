@@ -39,7 +39,7 @@ namespace Sample
             if (sender.Equals(btnDebug)) level = LogLevel.Debug;
             if (sender.Equals(btnWarning)) level = LogLevel.Warn;
             if (sender.Equals(btnError)) level = LogLevel.Error;
-
+            if (sender.Equals(btnFatal)) level = LogLevel.Fatal;
             log.Log(level, tbLogText.Text);
         }
 

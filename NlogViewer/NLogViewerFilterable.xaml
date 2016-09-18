@@ -1,0 +1,102 @@
+﻿<UserControl x:Class="NlogViewer.NLogViewerFilterable"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:nlogViewer="clr-namespace:NlogViewer"
+             mc:Ignorable="d" 
+             DataContext="{Binding RelativeSource={RelativeSource Self}}"
+             d:DesignHeight="230" d:DesignWidth="500">
+    <UserControl.Resources>
+        <Style TargetType="CheckBox" x:Key="checkboxStyle">
+            <Setter Property="FontSize" Value="15"/>
+            <Setter Property="Margin" Value="10,-2,10,10"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="140px"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        <Grid Grid.Column="0" Background="#f2f3f4">
+            <StackPanel Margin="10" MaxHeight="200" VerticalAlignment="Top" Background="#c1c7c9">
+                <TextBlock Text="Choose levels" FontSize="17" Margin="0,0,0,20"/>
+
+                <CheckBox Style="{StaticResource checkboxStyle}" IsChecked="{Binding ShowInfo}">
+                    <CheckBox.Content>
+                        <TextBlock Text="Info" Margin="0,-2,0,0"/>
+                    </CheckBox.Content>
+                </CheckBox>
+                <CheckBox Style="{StaticResource checkboxStyle}" IsChecked="{Binding ShowTrace}">
+                    <CheckBox.Content>
+                        <TextBlock Text="Trace" Margin="0,-2,0,0"/>
+                    </CheckBox.Content>
+                </CheckBox>
+                <CheckBox Style="{StaticResource checkboxStyle}" IsChecked="{Binding ShowWarn}">
+                    <CheckBox.Content>
+                        <TextBlock Text="Warn" Margin="0,-2,0,0"/>
+                    </CheckBox.Content>
+                </CheckBox>
+                <CheckBox Style="{StaticResource checkboxStyle}" IsChecked="{Binding ShowDebug}">
+                    <CheckBox.Content>
+                        <TextBlock Text="Debug" Margin="0,-2,0,0"/>
+                    </CheckBox.Content>
+                </CheckBox>
+                <CheckBox Style="{StaticResource checkboxStyle}" IsChecked="{Binding ShowError}">
+                    <CheckBox.Content>
+                        <TextBlock Text="Error" Margin="0,-2,0,0"/>
+                    </CheckBox.Content>
+                </CheckBox>
+                <CheckBox Style="{StaticResource checkboxStyle}" IsChecked="{Binding ShowFatal}">
+                    <CheckBox.Content>
+                        <TextBlock Text="Fatal" Margin="0,-2,0,0"/>
+                    </CheckBox.Content>
+                </CheckBox>
+            </StackPanel>
+        </Grid>
+        <Grid Grid.Column="1">
+            <DataGrid AutoGenerateColumns="False" ItemsSource="{Binding LogEntries}" Name="grid" 
+                      CanUserAddRows="False" CanUserDeleteRows="False" CanUserReorderColumns="True" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Header="Time"
+                                        Binding="{Binding Time}" 
+                                        Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nlogViewer:NLogViewerFilterable}}, Path=TimeWidth}">
+                    </DataGridTextColumn>
+
+                    <DataGridTextColumn Header="Logger"
+                                        Binding="{Binding LoggerName}"  
+                                        Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nlogViewer:NLogViewerFilterable}}, Path=LoggerNameWidth}" />
+
+                    <DataGridTextColumn Header="Level" 
+                                        Binding="{Binding Level}" 
+                                        Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nlogViewer:NLogViewerFilterable}}, Path=LevelWidth}" />
+                    
+                    <DataGridTextColumn Header="Message" 
+                                        Binding="{Binding FormattedMessage}" 
+                                        Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nlogViewer:NLogViewerFilterable}}, Path=MessageWidth}"/>
+
+                    <DataGridTextColumn Header="Exception"
+                                        Binding="{Binding Exception}"  
+                                        Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nlogViewer:NLogViewerFilterable}}, Path=ExceptionWidth}"/>
+                </DataGrid.Columns>
+                <DataGrid.ItemContainerStyle>
+                    <Style TargetType="DataGridRow">
+                        <Setter Property="ToolTip" Value="{Binding ToolTip}"/>
+                        <Setter Property="Background" Value="{Binding Background}" />
+                        <Setter Property="Foreground" Value="{Binding Foreground}" />
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Background" Value="DarkOrange"/>
+                                <Setter Property="Foreground" Value="black"/>
+                            </Trigger>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" Value="{Binding BackgroundMouseOver}"/>
+                                <Setter Property="Foreground" Value="{Binding ForegroundMouseOver}"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.ItemContainerStyle>
+            </DataGrid>
+        </Grid>
+    </Grid>
+</UserControl>
