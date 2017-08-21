@@ -26,23 +26,50 @@ namespace NlogViewer
         public ObservableCollection<LogEventViewModel> LogEntries { get; private set; }
         public bool IsTargetConfigured { get; private set; }
 
+        private double _TimeWidth = 120;
         [Description("Width of time column in pixels"), Category("Data")]
         [TypeConverterAttribute(typeof(LengthConverter))]
-        public double TimeWidth { get; set; }
+        public double TimeWidth
+        {
+           get { return _TimeWidth; }
+           set { _TimeWidth = value; }
+        }
 
+        private double _LoggerNameWidth = 50;
         [Description("Width of Logger column in pixels, or auto if not specified"), Category("Data")]
         [TypeConverterAttribute(typeof(LengthConverter))]
-        public double LoggerNameWidth { set; get; }
+        public double LoggerNameWidth
+        {
+           get { return _LoggerNameWidth; }
+           set { _LoggerNameWidth = value; }
+        }
 
+        private double _LevelWidth = 50;
         [Description("Width of Level column in pixels"), Category("Data")]
         [TypeConverterAttribute(typeof(LengthConverter))]
-        public double LevelWidth { get; set; }
+        public double LevelWidth
+        {
+           get { return _LevelWidth; }
+           set { _LevelWidth = value; }
+        }
+        
+        private double _MessageWidth = 200;
         [Description("Width of Message column in pixels"), Category("Data")]
         [TypeConverterAttribute(typeof(LengthConverter))]
-        public double MessageWidth { get; set; }
+        public double MessageWidth
+        {
+           get { return _MessageWidth; }
+           set { _MessageWidth = value; }
+        }
+        
+        private double _ExceptionWidth = 75;
         [Description("Width of Exception column in pixels"), Category("Data")]
         [TypeConverterAttribute(typeof(LengthConverter))]
-        public double ExceptionWidth { get; set; }
+        public double ExceptionWidth
+        {
+           get { return _ExceptionWidth; }
+           set { _ExceptionWidth = value; }
+        }
 
 
         public NlogViewer()
