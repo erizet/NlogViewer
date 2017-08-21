@@ -71,6 +71,14 @@ namespace NlogViewer
            set { _ExceptionWidth = value; }
         }
 
+        private int _MaxRowCount = 50;
+        [Description("The maximum number of row count. The oldest log gets deleted. Set to 0 for unlimited count."), Category("Data")]
+        [TypeConverterAttribute(typeof(LengthConverter))]
+        public int MaxRowCount
+        {
+           get { return _MaxRowCount; }
+           set { _MaxRowCount = value; }
+        }
 
         public NlogViewer()
         {
@@ -95,11 +103,13 @@ namespace NlogViewer
 
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                if (LogEntries.Count >= 50)
+                if (LogEntries.Count >= (MaxRowCount>0? MaxRowCount : Int32.MaxValue))
                     LogEntries.RemoveAt(0);
                 
                 LogEntries.Add(vm);
+                ItemAdded(this, (NLog.NLogEvent)log.LogEvent);
             }));
         }
     }
+
 }
