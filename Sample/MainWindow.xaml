@@ -7,7 +7,8 @@
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
             <RowDefinition Height="auto"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>   
+         <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         
         <GroupBox Grid.Row="0" Header="Send">
@@ -22,15 +23,24 @@
                 </StackPanel>
             </StackPanel>            
         </GroupBox>
+      <GroupBox Grid.Row="1" Header="Functions">
+         <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+               <Button x:Name="btnClear" Content="Clear" Click="Clear_Click" />
+               <Button Content="Scroll Top" Click="TopScroll_Click" />
+               <Button Content="Scroll Bottom" Click="BottomScroll_Click" />
+            </StackPanel>
+         </StackPanel>
+      </GroupBox>
 
-        <GroupBox Grid.Row="1" Header="Autosending">
+      <GroupBox Grid.Row="2" Header="Autosending">
             <StackPanel Orientation="Vertical">
                 <CheckBox x:Name="chkBackgroundSending" Content="Send logs from background thread." Checked="BackgroundSending_Checked" IsChecked="False" Unchecked="BackgroundSending_Unchecked" />
             </StackPanel>
         </GroupBox>
 
 
-        <GroupBox Grid.Row="2" Header="NlogViewer">
+        <GroupBox Grid.Row="3" Header="NlogViewer">
             <nlog:NlogViewer x:Name="logCtrl" TimeWidth="AUTO" LoggerNameWidth="0" LevelWidth="auto" ExceptionWidth="auto" MessageWidth="auto" /> 
         </GroupBox>
 
