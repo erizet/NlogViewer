@@ -105,7 +105,7 @@ namespace NlogViewer
 
             Dispatcher.BeginInvoke(new Action(() =>
             {
-                if (LogEntries.Count >= (MaxRowCount>0? MaxRowCount : Int32.MaxValue))
+                if (MaxRowCount>0 && LogEntries.Count >= MaxRowCount)
                     LogEntries.RemoveAt(0);
                 
                 LogEntries.Add(vm);
