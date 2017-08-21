@@ -54,6 +54,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="LogEventViewModel.cs" />
+    <Compile Include="NLogEvent.cs" />
     <Compile Include="NlogViewer.xaml.cs">
       <DependentUpon>NlogViewer.xaml</DependentUpon>
     </Compile>

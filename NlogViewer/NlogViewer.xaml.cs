@@ -23,6 +23,8 @@ namespace NlogViewer
     /// </summary>
     public partial class NlogViewer : UserControl
     {
+        public ListView LogView { get { return logView; } }
+        public event EventHandler ItemAdded = delegate { };
         public ObservableCollection<LogEventViewModel> LogEntries { get; private set; }
         public bool IsTargetConfigured { get; private set; }
 
