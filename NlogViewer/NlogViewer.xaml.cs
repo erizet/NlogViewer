@@ -75,7 +75,7 @@ namespace NlogViewer
 
         private int _MaxRowCount = 50;
         [Description("The maximum number of row count. The oldest log gets deleted. Set to 0 for unlimited count."), Category("Data")]
-        [TypeConverterAttribute(typeof(LengthConverter))]
+        [TypeConverterAttribute(typeof(Int32Converter))]
         public int MaxRowCount
         {
            get { return _MaxRowCount; }
