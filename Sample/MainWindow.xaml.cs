@@ -1,19 +1,8 @@
 ﻿using NLog;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Media;
 
 namespace Sample
@@ -31,12 +20,15 @@ namespace Sample
         public MainWindow()
         {
             InitializeComponent();
-            logCtrl.ItemAdded += scrollToEnd;
+            cbAutoScroll.IsChecked = true;
+
+            logCtrl.ItemAdded += OnLogMessageItemAdded;
+
         }
 
         private void Send_Click(object sender, RoutedEventArgs e)
         {
-            Logger log = NLog.LogManager.GetLogger("button");
+            Logger log = LogManager.GetLogger("button");
 
             LogLevel level = LogLevel.Trace;
             if (sender.Equals(btnDebug)) level = LogLevel.Debug;
@@ -46,13 +38,12 @@ namespace Sample
             log.Log(level, tbLogText.Text);
         }
 
-       private void scrollToEnd(object o, EventArgs Args )
+       private void OnLogMessageItemAdded(object o, EventArgs Args )
        {
           // Do what you want :)
           LogEventInfo logInfo = (NLogEvent)Args;
           if( logInfo.Level >= NLog.LogLevel.Error)
             SystemSounds.Beep.Play();
-          logCtrl.ScrollToLast();
        }
 
         private void Clear_Click(object sender, RoutedEventArgs e)
@@ -65,9 +56,16 @@ namespace Sample
         }
         private void BottomScroll_Click(object sender, RoutedEventArgs e)
         {
-           logCtrl.ScrollToLast();
+            logCtrl.ScrollToLast();
         }
-
+        private void AutoScroll_Checked(object sender, RoutedEventArgs e)
+        {
+            logCtrl.AutoScrollToLast = true;
+        }
+        private void AutoScroll_Unchecked(object sender, RoutedEventArgs e)
+        {
+            logCtrl.AutoScrollToLast = false;
+        }
 
 
         private void BackgroundSending_Checked(object sender, RoutedEventArgs e)
@@ -95,7 +93,7 @@ namespace Sample
 
             while (!ct.WaitHandle.WaitOne(2000))
             {
-                log.Trace(String.Format("Messageno {0} from backgroudtask.", counter++));
+                log.Trace(string.Format("Messageno {0} from backgroudtask.", counter++));
             }
 
             log.Debug("Backgroundtask stopped.");

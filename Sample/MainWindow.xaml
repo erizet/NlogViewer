@@ -28,7 +28,8 @@
             <StackPanel Orientation="Horizontal">
                <Button x:Name="btnClear" Content="Clear" Click="Clear_Click" />
                <Button Content="Scroll Top" Click="TopScroll_Click" />
-               <Button Content="Scroll Bottom" Click="BottomScroll_Click" />
+                <Button Content="Scroll Bottom" Click="BottomScroll_Click" />
+                <CheckBox x:Name="cbAutoScroll" Content="Scroll To Last" HorizontalAlignment="Left" VerticalAlignment ="Center" Checked="AutoScroll_Checked" Unchecked="AutoScroll_Unchecked"/>
             </StackPanel>
          </StackPanel>
       </GroupBox>
