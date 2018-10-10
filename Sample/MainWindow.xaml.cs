@@ -14,9 +14,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Media;
 
 namespace Sample
 {
+
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
@@ -29,6 +31,7 @@ namespace Sample
         public MainWindow()
         {
             InitializeComponent();
+            logCtrl.ItemAdded += scrollToEnd;
         }
 
         private void Send_Click(object sender, RoutedEventArgs e)
@@ -42,6 +45,30 @@ namespace Sample
 
             log.Log(level, tbLogText.Text);
         }
+
+       private void scrollToEnd(object o, EventArgs Args )
+       {
+          // Do what you want :)
+          LogEventInfo logInfo = (NLogEvent)Args;
+          if( logInfo.Level >= NLog.LogLevel.Error)
+            SystemSounds.Beep.Play();
+          logCtrl.ScrollToLast();
+       }
+
+        private void Clear_Click(object sender, RoutedEventArgs e)
+        {
+           logCtrl.Clear();
+        }
+        private void TopScroll_Click(object sender, RoutedEventArgs e)
+        {
+           logCtrl.ScrollToFirst();
+        }
+        private void BottomScroll_Click(object sender, RoutedEventArgs e)
+        {
+           logCtrl.ScrollToLast();
+        }
+
+
 
         private void BackgroundSending_Checked(object sender, RoutedEventArgs e)
         {
