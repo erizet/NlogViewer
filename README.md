@@ -6,7 +6,7 @@ NlogViewer
 
 NlogViewer is a simple WPF-control to show NLog-logs. It's heavily inspired by [this blog][1].
 
-##How to use?##
+## How to use?
 
 Add a namespace to your Window, like this:
 
@@ -30,6 +30,6 @@ To setup NlogViewer as a target, add the following to your Nlog.config.
   </rules>
 ```
 
-##Nuget##
+## Nuget
 
 A NuGet-package is available [here][nuget]. It will try to install the control and a sample Nlog.config.
