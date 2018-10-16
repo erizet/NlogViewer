@@ -9,7 +9,7 @@
     <projectUrl>https://github.com/erizet/NlogViewer</projectUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <description>$description$</description>
-    <releaseNotes>Added time column and width property for all columns.</releaseNotes>
+    <releaseNotes>Autoscroll.</releaseNotes>
     <copyright>Copyright 2013</copyright>
     <tags>NLog WPF Control</tags>
     <dependencies>
