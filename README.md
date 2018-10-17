@@ -1,5 +1,6 @@
 [1]: http://dotnetsolutionsbytomi.blogspot.se/2011/06/creating-awesome-logging-control-with.html
 [nuget]: https://nuget.org/packages/NlogViewer/
+![NuGet](https://img.shields.io/nuget/v/nlogviewer.svg)
 
 NlogViewer
 ==========
