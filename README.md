@@ -1,3 +1,8 @@
+> ℹ **NOTE**: Fork from https://github.com/erizet/NlogViewer  
+Goal of the fork is a conversion to a serilog sink.
+
+---
+
 [1]: http://dotnetsolutionsbytomi.blogspot.se/2011/06/creating-awesome-logging-control-with.html
 [nuget]: https://nuget.org/packages/NlogViewer/
 ![NuGet](https://img.shields.io/nuget/v/nlogviewer.svg)
