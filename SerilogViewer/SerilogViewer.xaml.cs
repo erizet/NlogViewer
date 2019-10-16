@@ -1,21 +1,21 @@
-﻿using System;
+﻿using Serilog.Events;
+using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
-using NLog;
-using NLog.Common;
 
-namespace NlogViewer
+namespace SerilogViewer
 {
     /// <summary>
-    /// Interaction logic for NlogViewer.xaml
+    /// Interaction logic for SerilogViewer.xaml
     /// </summary>
-    public partial class NlogViewer : UserControl
+    public partial class SerilogViewer : UserControl
     {
         public ListView LogView { get { return logView; } }
+
         public event EventHandler ItemAdded = delegate { };
+
         public ObservableCollection<LogEventViewModel> LogEntries { get; private set; }
         public bool IsTargetConfigured { get; private set; }
 
@@ -28,13 +28,13 @@ namespace NlogViewer
             set { _TimeWidth = value; }
         }
 
-        private double _LoggerNameWidth = 50;
-        [Description("Width of Logger column in pixels, or auto if not specified"), Category("Data")]
+        private double _ContextWidth = 50;
+        [Description("Width of Context column in pixels, or auto if not specified"), Category("Data")]
         [TypeConverter(typeof(LengthConverter))]
-        public double LoggerNameWidth
+        public double ContextWidth
         {
-            get { return _LoggerNameWidth; }
-            set { _LoggerNameWidth = value; }
+            get { return _ContextWidth; }
+            set { _ContextWidth = value; }
         }
 
         private double _LevelWidth = 50;
@@ -82,7 +82,7 @@ namespace NlogViewer
             set { _autoScrollToLast = value; }
         }
 
-        public NlogViewer()
+        public SerilogViewer()
         {
             IsTargetConfigured = false;
             LogEntries = new ObservableCollection<LogEventViewModel>();
@@ -91,17 +91,14 @@ namespace NlogViewer
 
             if (!DesignerProperties.GetIsInDesignMode(this))
             {
-                foreach (NlogViewerTarget target in LogManager.Configuration.AllTargets.Where(t => t is NlogViewerTarget).Cast<NlogViewerTarget>())
-                {
-                    IsTargetConfigured = true;
-                    target.LogReceived += LogReceived;
-                }
+                //Serilog.Configuration.
+                //target.LogReceived += LogReceived;
             }
         }
 
-        protected void LogReceived(AsyncLogEventInfo log)
+        public void LogReceived(LogEvent log, IFormatProvider formatProvider)
         {
-            LogEventViewModel vm = new LogEventViewModel(log.LogEvent);
+            LogEventViewModel vm = new LogEventViewModel(log, formatProvider);
 
             Dispatcher.BeginInvoke(new Action(() =>
             {
@@ -109,9 +106,10 @@ namespace NlogViewer
                     LogEntries.RemoveAt(0);
                 LogEntries.Add(vm);
                 if (AutoScrollToLast) ScrollToLast();
-                ItemAdded(this, (NLogEvent)log.LogEvent);
+                //ItemAdded(this, log);
             }));
         }
+
         public void Clear()
         {
             LogEntries.Clear();
@@ -134,7 +132,5 @@ namespace NlogViewer
         {
             LogView.ScrollIntoView(item);
         }
-
     }
-
 }

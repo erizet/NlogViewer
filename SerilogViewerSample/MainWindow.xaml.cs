@@ -1,11 +1,13 @@
-﻿using NLog;
+﻿using Serilog;
+using Serilog.Events;
+using SerilogViewer;
 using System;
+using System.Media;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using System.Media;
 
-namespace Sample
+namespace SerilogViewerSample
 {
 
     /// <summary>
@@ -15,12 +17,17 @@ namespace Sample
     {
         Task _logTask;
         CancellationTokenSource _cancelLogTask;
-
+        ILogger log;
 
         public MainWindow()
         {
             InitializeComponent();
             cbAutoScroll.IsChecked = true;
+
+            log = new LoggerConfiguration()
+                .MinimumLevel.Verbose()
+                .WriteTo.SerilogViewerSink(logCtrl)
+                .CreateLogger().ForContext<MainWindow>();
 
             logCtrl.ItemAdded += OnLogMessageItemAdded;
 
@@ -28,21 +35,19 @@ namespace Sample
 
         private void Send_Click(object sender, RoutedEventArgs e)
         {
-            Logger log = LogManager.GetLogger("button");
+            LogEventLevel level = LogEventLevel.Verbose;
+            if (sender.Equals(btnDebug)) level = LogEventLevel.Debug;
+            if (sender.Equals(btnWarning)) level = LogEventLevel.Warning;
+            if (sender.Equals(btnError)) level = LogEventLevel.Error;
 
-            LogLevel level = LogLevel.Trace;
-            if (sender.Equals(btnDebug)) level = LogLevel.Debug;
-            if (sender.Equals(btnWarning)) level = LogLevel.Warn;
-            if (sender.Equals(btnError)) level = LogLevel.Error;
-
-            log.Log(level, tbLogText.Text);
+            log.Write(level, tbLogText.Text);
         }
 
        private void OnLogMessageItemAdded(object o, EventArgs Args )
        {
           // Do what you want :)
-          LogEventInfo logInfo = (NLogEvent)Args;
-          if( logInfo.Level >= NLog.LogLevel.Error)
+          LogEvent logEvent = (SerilogEvent)Args;
+          if( logEvent.Level >= LogEventLevel.Error)
             SystemSounds.Beep.Play();
        }
 
@@ -87,16 +92,17 @@ namespace Sample
             CancellationToken ct = (CancellationToken)obj;
 
             int counter = 0;
-            Logger log = NLog.LogManager.GetLogger("task");
 
-            log.Debug("Backgroundtask started.");
+            var backgroundLogger = log.ForContext("Type", "Backgroundtask");
+
+            backgroundLogger.Debug("Backgroundtask started.");
 
             while (!ct.WaitHandle.WaitOne(2000))
             {
-                log.Trace(string.Format("Messageno {0} from backgroudtask.", counter++));
+                backgroundLogger.ForContext("Type", "Backgroundtask").Verbose(string.Format("Message number: {0} from backgroudtask.", counter++));
             }
 
-            log.Debug("Backgroundtask stopped.");
+            backgroundLogger.Debug("Backgroundtask stopped.");
         }
 
 

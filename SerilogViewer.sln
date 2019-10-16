@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29411.108
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerilogViewerSample", "SerilogViewerSample\SerilogViewerSample.csproj", "{3FFEA19F-765F-426B-B25E-D2A448281878}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SerilogViewer", "SerilogViewer\SerilogViewer.csproj", "{55C840BA-979C-4836-9483-C65D8390EB26}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{7C1A6760-7375-4D65-BBFE-B84D0CE90384}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		LICENSE.md = LICENSE.md
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{3FFEA19F-765F-426B-B25E-D2A448281878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3FFEA19F-765F-426B-B25E-D2A448281878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3FFEA19F-765F-426B-B25E-D2A448281878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3FFEA19F-765F-426B-B25E-D2A448281878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55C840BA-979C-4836-9483-C65D8390EB26}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55C840BA-979C-4836-9483-C65D8390EB26}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55C840BA-979C-4836-9483-C65D8390EB26}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55C840BA-979C-4836-9483-C65D8390EB26}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {77E88BC7-4EC7-411B-871F-1C179E06351E}
+	EndGlobalSection
+EndGlobal

@@ -1,8 +1,8 @@
-﻿<Window x:Class="Sample.MainWindow"
+﻿<Window x:Class="SerilogViewerSample.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:nlog ="clr-namespace:NlogViewer;assembly=NlogViewer"
-        Title="NLogWPFControl Sample" Height="350" Width="525">
+        xmlns:serilogviewer="clr-namespace:SerilogViewer;assembly=SerilogViewer"
+        Title="SerilogViewer Sample">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="auto"></RowDefinition>
@@ -41,8 +41,8 @@
         </GroupBox>
 
 
-        <GroupBox Grid.Row="3" Header="NlogViewer">
-            <nlog:NlogViewer x:Name="logCtrl" TimeWidth="AUTO" LoggerNameWidth="0" LevelWidth="auto" ExceptionWidth="auto" MessageWidth="auto" /> 
+        <GroupBox Grid.Row="3" Header="SerilogViewer">
+            <serilogviewer:SerilogViewer x:Name="logCtrl" TimeWidth="auto" ContextWidth="auto" LevelWidth="auto" ExceptionWidth="auto" MessageWidth="auto" /> 
         </GroupBox>
 
     </Grid>
