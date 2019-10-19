@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!-- https://docs.microsoft.com/en-us/nuget/quickstart/create-and-publish-a-package-using-visual-studio-net-framework -->
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <owners>$author$</owners>
+    <license type="expression">MIT</license>
+    <projectUrl>https://github.com/codeaphex/SerilogViewer</projectUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>SerilogViewer is a simple WPF-control to show Serilog-logs.</description>
+    <releaseNotes>Reconfigured dependencies</releaseNotes>
+    <copyright>Copyright 2019</copyright>
+    <tags>serilog serilog-sink wpf log control</tags>
+    <dependencies>
+        <dependency id="Serilog" version="[2.9.0,3)" />
+    </dependencies>
+  </metadata>
+</package>
