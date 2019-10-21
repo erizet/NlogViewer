@@ -20,6 +20,7 @@
                     <Button x:Name="btnDebug" Content="Debug" Click="Send_Click" />
                     <Button x:Name="btnWarning" Content="Warning" Click="Send_Click" />
                     <Button x:Name="btnError" Content="Error" Click="Send_Click" />
+                    <CheckBox x:Name="cbWithContext" Content="add SourceContext" HorizontalAlignment="Left" VerticalAlignment ="Center"/>
                 </StackPanel>
             </StackPanel>            
         </GroupBox>

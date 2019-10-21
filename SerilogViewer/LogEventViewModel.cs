@@ -11,7 +11,7 @@ namespace SerilogViewer
         private IFormatProvider formatProvider;
 
         public string Time { get; private set; }
-        public string Context { get; private set; }
+        public string SourceContext { get; set; }
         public string Level { get; private set; }
         public string FormattedMessage { get; private set; }
         public Exception Exception { get; private set; }
@@ -31,7 +31,11 @@ namespace SerilogViewer
             Level = logEvent.Level.ToString();
             FormattedMessage = logEvent.RenderMessage(formatProvider);
             Exception = logEvent.Exception;
-            Context = logEvent.Properties["SourceContext"].ToString();
+            LogEventPropertyValue sourceContext;
+            if(logEvent.Properties.TryGetValue("SourceContext", out sourceContext))
+            {
+                SourceContext = sourceContext.ToString();
+            }
             Time = logEvent.Timestamp.ToString("G", CultureInfo.CurrentCulture);
 
             SetupColors(logEvent);

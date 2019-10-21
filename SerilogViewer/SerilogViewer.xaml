@@ -32,7 +32,7 @@
                 <GridView>
                     <GridView.Columns>
                         <GridViewColumn DisplayMemberBinding="{Binding Time}" Header="Time" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type serilogViewer:SerilogViewer}}, Path=TimeWidth}"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Context}" Header="Logger" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type serilogViewer:SerilogViewer}}, Path=ContextWidth}"/>
+                        <GridViewColumn DisplayMemberBinding="{Binding SourceContext}" Header="SourceContext" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type serilogViewer:SerilogViewer}}, Path=ContextWidth}"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Level}" Header="Level" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type serilogViewer:SerilogViewer}}, Path=LevelWidth}"/>
                         <GridViewColumn DisplayMemberBinding="{Binding FormattedMessage}"  Header="Message" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type serilogViewer:SerilogViewer}}, Path=MessageWidth}"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Exception}" Header="Exception" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type serilogViewer:SerilogViewer}}, Path=ExceptionWidth}"/>

@@ -27,7 +27,7 @@ namespace SerilogViewerSample
             log = new LoggerConfiguration()
                 .MinimumLevel.Verbose()
                 .WriteTo.SerilogViewerSink(logCtrl)
-                .CreateLogger().ForContext<MainWindow>();
+                .CreateLogger();
 
             logCtrl.ItemAdded += OnLogMessageItemAdded;
 
@@ -40,10 +40,27 @@ namespace SerilogViewerSample
             if (sender.Equals(btnWarning)) level = LogEventLevel.Warning;
             if (sender.Equals(btnError)) level = LogEventLevel.Error;
 
-            log.Write(level, tbLogText.Text);
+            if ((bool)cbWithContext.IsChecked)
+            {
+                log.ForContext<MainWindow>().Write(level, tbLogText.Text);
+            }
+            else 
+            {
+                log.Write(level, tbLogText.Text);
+            }
         }
 
-       private void OnLogMessageItemAdded(object o, EventArgs Args )
+        private void SendWithContext_Click(object sender, RoutedEventArgs e)
+        {
+            LogEventLevel level = LogEventLevel.Verbose;
+            if (sender.Equals(btnDebug)) level = LogEventLevel.Debug;
+            if (sender.Equals(btnWarning)) level = LogEventLevel.Warning;
+            if (sender.Equals(btnError)) level = LogEventLevel.Error;
+
+            log.ForContext<MainWindow>().Write(level, tbLogText.Text);
+        }
+
+        private void OnLogMessageItemAdded(object o, EventArgs Args )
        {
           // Do what you want :)
           LogEvent logEvent = (SerilogEvent)Args;
