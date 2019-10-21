@@ -1,0 +1,58 @@
+name: Generate NuGet package
+
+# Workflow Triggers: https://help.github.com/en/articles/events-that-trigger-workflows#webhook-events
+on:
+  release:
+    types: [published]
+jobs:
+  pack:
+    name: Create NuGet package
+    # Virtual environment: https://help.github.com/en/articles/virtual-environments-for-github-actions
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Get tag name
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
+        run: echo %TAG_NAME%
+
+      - name: Remove version prefix
+        if: startsWith(github.event.release.tag_name, 'v')
+        run: |
+          echo ::set-env name=TAG_NAME::%TAG_NAME:~1%
+          echo %TAG_NAME%
+        env:
+          TAG_NAME: ${{ github.event.release.tag_name }}
+
+      - name: Get version and suffix
+        run: |
+          echo %TAG_NAME%
+          for /f "tokens=1,2 delims=-" %%a in ("%TAG_NAME%") do set version=%%a&set suffix=%%b
+          echo %version%
+          echo %suffix%
+          echo ::set-env name=VERSION::%version%
+          echo ::set-env name=SUFFIX::%suffix%
+
+      - name: Get nuspec path
+        run: |
+          for /f "tokens=*" %%a in ('dir *.nuspec /b /s') do set nuspecpath=%%~dpa
+          echo %nuspecpath%
+          echo ::set-env name=NUSPECPATH::%nuspecpath%
+
+      - name: install nuget
+        run: choco install nuget.commandline -y 
+
+      - name: nuget pack
+        run: |
+          echo %NUSPECPATH%
+          echo %SUFFIX%
+          if defined SUFFIX (nuget pack %NUSPECPATH% -build -Suffix %SUFFIX% -Prop Configuration=Release -OutputDirectory "D:\\package\\")else (nuget pack %NUSPECPATH% -build -Prop Configuration=Release -OutputDirectory "D:\\package\\")
+
+      - name: nuget publish
+        run: nuget push D:\package\%REPO_NAME%.%TAG_NAME%.nupkg ${{secrets.NUGET_TOKEN}} -Source https://api.nuget.org/v3/index.json
+        env:
+          REPO_NAME: ${{ github.event.repository.name }}
