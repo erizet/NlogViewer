@@ -34,11 +34,42 @@
                         <GridViewColumn DisplayMemberBinding="{Binding Time}" Header="Time" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nlogViewer:NlogViewer}}, Path=TimeWidth}"/>
                         <GridViewColumn DisplayMemberBinding="{Binding LoggerName}" Header="Logger" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nlogViewer:NlogViewer}}, Path=LoggerNameWidth}"/>
                         <GridViewColumn DisplayMemberBinding="{Binding Level}" Header="Level" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nlogViewer:NlogViewer}}, Path=LevelWidth}"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding FormattedMessage}"  Header="Message" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nlogViewer:NlogViewer}}, Path=MessageWidth}"/>
-                        <GridViewColumn DisplayMemberBinding="{Binding Exception}" Header="Exception" Width="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type nlogViewer:NlogViewer}}, Path=ExceptionWidth}"/>
+                        <GridViewColumn Header="Message" Width="{Binding ElementName=helperField, Path=ActualWidth}">
+                            <GridViewColumn.CellTemplate>
+                                <DataTemplate>
+                                    <TextBlock TextWrapping="Wrap" Text="{Binding FormattedMessage}"/>
+                                </DataTemplate>
+                            </GridViewColumn.CellTemplate>
+                        </GridViewColumn>
                     </GridView.Columns>
                 </GridView>
             </ListView.View>
         </ListView>
+      
+        <!-- Hidden Grid which does resizing of the ListView to allow the message column to fill remaining space -->
+        <Grid x:Name="HiddenHelper" Visibility="Hidden">
+            <Grid.ColumnDefinitions>
+                <!-- Width is bound to width of the first GridViewColumn -->
+                <ColumnDefinition Width="{Binding ElementName=timeCol, Path=ActualWidth}"/>
+                <!-- Width is set to "Fill" -->
+                <ColumnDefinition Width="*"/>
+                <!-- Correction Width -->
+                <ColumnDefinition Width="10"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1" x:Name="helperField"/>
+        </Grid>
+
+        <!-- Display an Exception in greater detail when clicked on -->
+        <Popup Name="Popup"
+            Placement="Bottom"
+            VerticalOffset="-172"
+            HorizontalOffset="-10"
+            AllowsTransparency="True"
+            StaysOpen="False">
+            <Grid MinHeight="183" Width="{Binding ElementName=HiddenHelper, Path=ActualWidth}">
+                <TextBox IsReadOnly="True" x:Name="PopupText" Margin="10" TextWrapping="Wrap" Padding="7"/>
+                <Button x:Name="CloseButton" FontSize="10" VerticalAlignment="Top" HorizontalAlignment="Right" Background="Red" Foreground="White" Width="{Binding RelativeSource={x:Static RelativeSource.Self}, Path=ActualHeight}"  HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Click="Hide" Content="X"/>
+            </Grid>
+        </Popup>
     </Grid>
 </UserControl>
