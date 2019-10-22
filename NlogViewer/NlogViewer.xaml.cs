@@ -6,6 +6,8 @@ using System.Windows;
 using System.Windows.Controls;
 using NLog;
 using NLog.Common;
+using System.Windows.Controls.Primitives;
+using System.Windows.Input;
 
 namespace NlogViewer
 {
@@ -133,6 +135,42 @@ namespace NlogViewer
         private void ScrollToItem(object item)
         {
             LogView.ScrollIntoView(item);
+        }
+
+        /// <summary>
+        /// Display the Exception popup when a log is clicked on.
+        /// </summary>
+        /// <param name="sender">Clicked on ListViewItem</param>
+        /// <param name="e">Mouse Click Event</param>
+        private void LoggerOnClick(object sender, MouseButtonEventArgs e)
+        {
+            if(sender != null)
+            {
+                var layer = sender as ListViewItem;
+                if (layer != null)
+                {
+                    var content = layer.Content as LogEventViewModel;
+                    if (content != null)
+                    {
+                        var exception = content.Exception;
+                        if (exception != null)
+                        {
+                            PopupText.Text = exception.ToString();
+                            Popup.IsOpen = true;
+                        }
+                    }
+                }
+            }
+        }
+
+        /// <summary>
+        /// Close the Exception popup.
+        /// </summary>
+        /// <param name="sender">Close button</param>
+        /// <param name="e">Routed Event</param>
+        private void Hide(object sender, RoutedEventArgs e)
+        {
+            Popup.IsOpen = false;
         }
 
     }
