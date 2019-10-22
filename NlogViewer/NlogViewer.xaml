@@ -13,6 +13,7 @@
         <ListView ItemsSource="{Binding LogEntries}" Name="logView">
             <ListView.ItemContainerStyle>
                 <Style TargetType="{x:Type ListViewItem}">
+                    <EventSetter Event="PreviewMouseLeftButtonDown" Handler="LoggerOnClick" />
                     <Setter Property="ToolTip" Value="{Binding ToolTip}" />
                     <Setter Property="Background" Value="{Binding Background}" />
                     <Setter Property="Foreground" Value="{Binding Foreground}" />
