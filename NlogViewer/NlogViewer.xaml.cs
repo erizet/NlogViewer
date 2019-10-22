@@ -144,7 +144,7 @@ namespace NlogViewer
         /// <param name="e">Mouse Click Event</param>
         private void LoggerOnClick(object sender, MouseButtonEventArgs e)
         {
-            if(sender != null)
+            if (sender != null)
             {
                 var layer = sender as ListViewItem;
                 if (layer != null)
