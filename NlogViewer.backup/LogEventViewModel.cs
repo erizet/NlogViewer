@@ -19,7 +19,7 @@ namespace NlogViewer
             FormattedMessage = logEventInfo.FormattedMessage;
             Exception = logEventInfo.Exception;
             LoggerName = logEventInfo.LoggerName;
-            Time = logEventInfo.TimeStamp.ToString("s");
+            Time = logEventInfo.TimeStamp.ToString(CultureInfo.InvariantCulture);
 
             SetupColors(logEventInfo);
         }
@@ -41,7 +41,7 @@ namespace NlogViewer
             if (logEventInfo.Level == LogLevel.Warn)
             {
                 Background = Brushes.Yellow;
-                BackgroundMouseOver = Brushes.SteelBlue;
+                BackgroundMouseOver = Brushes.GreenYellow;
             }
             else if (logEventInfo.Level == LogLevel.Error)
             {

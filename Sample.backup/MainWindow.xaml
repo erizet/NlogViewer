@@ -1,0 +1,49 @@
+﻿<Window x:Class="Sample.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:nlog ="clr-namespace:NlogViewer;assembly=NlogViewer"
+        Title="NLogWPFControl Sample" Height="350" Width="525">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>
+            <RowDefinition Height="auto"></RowDefinition>   
+         <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        
+        <GroupBox Grid.Row="0" Header="Send">
+            <StackPanel Orientation="Vertical">
+                <Label x:Name="lblLogText" Content="Text" />
+                <TextBox x:Name="tbLogText" Text="Sample text goes here...." HorizontalAlignment="Stretch" />
+                <StackPanel Orientation="Horizontal">
+                    <Button x:Name="btnVerbose" Content="Verbose" Click="Send_Click" />
+                    <Button x:Name="btnDebug" Content="Debug" Click="Send_Click" />
+                    <Button x:Name="btnWarning" Content="Warning" Click="Send_Click" />
+                    <Button x:Name="btnError" Content="Error" Click="Send_Click" />
+                </StackPanel>
+            </StackPanel>            
+        </GroupBox>
+      <GroupBox Grid.Row="1" Header="Functions">
+         <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+               <Button x:Name="btnClear" Content="Clear" Click="Clear_Click" />
+               <Button Content="Scroll Top" Click="TopScroll_Click" />
+                <Button Content="Scroll Bottom" Click="BottomScroll_Click" />
+                <CheckBox x:Name="cbAutoScroll" Content="Scroll To Last" HorizontalAlignment="Left" VerticalAlignment ="Center" Checked="AutoScroll_Checked" Unchecked="AutoScroll_Unchecked"/>
+            </StackPanel>
+         </StackPanel>
+      </GroupBox>
+
+      <GroupBox Grid.Row="2" Header="Autosending">
+            <StackPanel Orientation="Vertical">
+                <CheckBox x:Name="chkBackgroundSending" Content="Send logs from background thread." Checked="BackgroundSending_Checked" IsChecked="False" Unchecked="BackgroundSending_Unchecked" />
+            </StackPanel>
+        </GroupBox>
+
+
+        <GroupBox Grid.Row="3" Header="NlogViewer">
+            <nlog:NlogViewer x:Name="logCtrl" TimeWidth="AUTO" LoggerNameWidth="0" LevelWidth="auto" ExceptionWidth="auto" MessageWidth="auto" /> 
+        </GroupBox>
+
+    </Grid>
+</Window>
