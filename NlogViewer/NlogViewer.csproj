@@ -2,11 +2,11 @@
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <OutputType>Library</OutputType>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
+    <!-- <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir> -->
+    <!-- <RestorePackages>true</RestorePackages> -->
     <GenerateAssemblyInfo>false</GenerateAssemblyInfo>
     <UseWPF>true</UseWPF>
-    <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets>
+    <!-- <ImportWindowsDesktopTargets>true</ImportWindowsDesktopTargets> -->
   </PropertyGroup>
   <ItemGroup>
     <None Update="NlogViewer.nuspec">
@@ -15,20 +15,15 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <PackageReference Include="Microsoft.CSharp" Version="4.7.0" />
-    <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" />
-    <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.261602">
-      <PrivateAssets>all</PrivateAssets>
-    </PackageReference>
-    <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" />
-    <PackageReference Include="NLog" Version="4.7.13" />
+    <!-- <PackageReference Include="Microsoft.CSharp" Version="4.7.0" /> -->
+    <!-- <PackageReference Include="System.Data.DataSetExtensions" Version="4.5.0" /> -->
+    <!-- <PackageReference Include="Microsoft.DotNet.UpgradeAssistant.Extensions.Default.Analyzers" Version="0.3.261602"> -->
+    <!--   <PrivateAssets>all</PrivateAssets> -->
+    <!-- </PackageReference> -->
+    <!-- <PackageReference Include="Microsoft.Windows.Compatibility" Version="6.0.0" /> -->
+    <PackageReference Include="NLog" Version="4.5.0" />
   </ItemGroup>
   <PropertyGroup>
-    <PostBuildEvent>if "$(ConfigurationName)" == "Release" (
-
-NuGet.exe pack "$(ProjectDir)NlogViewer.csproj" -Prop Configuration=Release
-
-)</PostBuildEvent>
     <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
   </PropertyGroup>
 </Project>
