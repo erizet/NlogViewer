@@ -8,6 +8,11 @@
              d:DesignHeight="230" d:DesignWidth="457"
              DataContext="{Binding RelativeSource={RelativeSource Self}}">
     <UserControl.Resources>
+        <Style TargetType="GridViewColumnHeader">
+            <Setter Property="FontFamily" Value="Microsoft Yahei UI"></Setter>
+            <Setter Property="FontSize" Value="12"></Setter>
+            <Setter Property="Height" Value="20"></Setter>
+        </Style>
     </UserControl.Resources>
     <Grid>
         <ListView ItemsSource="{Binding LogEntries}" Name="logView">
@@ -18,8 +23,8 @@
                     <Setter Property="Foreground" Value="{Binding Foreground}" />
                     <Style.Triggers>
                         <Trigger Property="IsSelected" Value="True">
-                            <Setter Property="Background" Value="DarkOrange"/>
-                            <Setter Property="Foreground" Value="black"/>
+                            <Setter Property="Background" Value="Coral"/>
+                            <Setter Property="Foreground" Value="White"/>
                         </Trigger>
                         <Trigger Property="IsMouseOver" Value="True">
                             <Setter Property="Background" Value="{Binding BackgroundMouseOver}"/>
